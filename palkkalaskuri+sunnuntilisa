@@ -1,0 +1,7 @@
+tuntipalkka = float(input("Tuntipalkka:"))
+tyotunnit = int(input("Työtunnit:"))
+viikonpaiva = input("Viikonpäivä:")
+if viikonpaiva == "sunnuntai":
+    print(f"Palkka {(2*tuntipalkka)*tyotunnit} euroa")
+else:
+    print(f"Palkka {tuntipalkka*tyotunnit} euroa")
