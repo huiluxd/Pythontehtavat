@@ -1,0 +1,7 @@
+ltila = int(input("Anna lämpötila (F):"))
+fahr = (ltila - 32) * 5 / 9
+if fahr < 0:
+    print(f"{ltila} fahrenheit-astettta on {fahr} celsius-astetta")
+    print("Paleltaa!")
+else:
+    print(f"{ltila} fahrenheit-astetta on {fahr} celsius-astetta")
