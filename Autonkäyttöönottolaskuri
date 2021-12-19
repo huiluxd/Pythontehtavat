@@ -1,0 +1,45 @@
+from math import sqrt
+class AUTO():
+    def __init__(self, kilometrit, kulutus, polttoaine, ika, vakuutus, bonus, verot):
+        self.kilometrit = kilometrit
+        self.kulutus = kulutus
+        self.polttoaine = polttoaine
+        self.ika = ika
+        self.vakuutus = vakuutus
+        self.bonus = bonus
+        self.verot = verot
+
+def paaohjelma():
+    tietolista = []
+    tiedot = tietoja()
+    laskeminen(tiedot, tietolista)
+    print(f"1. vuosi: {round(tietolista[0])}")
+    print(f"2. vuosi: {round(tietolista[1])}")
+    print(f"3. vuosi: {round(tietolista[2])}")
+    print(f"4. vuosi: {round(tietolista[3])}")
+    print(f"5. vuosi: {round(tietolista[4])}")
+    print(f"Viiden vuoden aikana autoon käytettiin rahaa {round(sum(i for i in tietolista))} euroa.")
+    print("Kiitos ohjelman käytöstä.")
+    
+
+def laskeminen(tiedot, tietolista):
+    i = 0
+    while i < 5:
+        summa = tiedot.kilometrit/100 * tiedot.kulutus*tiedot.polttoaine+tiedot.vakuutus-(tiedot.vakuutus*0.01*tiedot.bonus)+tiedot.verot +200*sqrt(tiedot.ika)
+        tiedot.ika += 1
+        i += 1
+        tietolista.append(summa)
+    return tietolista
+
+def tietoja():
+    km = int(input("Anna vuotuiset kilometrit: "))
+    kulutus = float(input("Anna moottorin polttoaineen kulutus (l/100km): "))
+    polttoaine = float(input("Anna polttoaineen hinta (€/l): "))
+    ika = int(input("Anna auton ikä vuosissa: "))
+    vakuutus = int(input("Anna vakuutusten määrä (euroissa): "))
+    bonus = int(input("Anna bonusprosentti kokonaislukuna: "))
+    verot = int(input("Anna verojen määrä: "))
+    autotiedot = AUTO(km,kulutus,polttoaine,ika,vakuutus,bonus,verot)
+    return autotiedot
+
+paaohjelma()
