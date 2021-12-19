@@ -1,0 +1,40 @@
+import random
+import sys
+random.seed(-1)
+
+def paaohjelma():
+    print("""Tämä ohjelma arpoo haluamasi määrän kokonaislukuja halutulta väliltä\nja kirjoittaa ne tekstitiedostoon.""")
+    rnumero = []
+    tiednimi = input("Anna tehtävän tiedoston nimi: ")
+    a, y = sisalto(rnumero)  #a = runmero-lista ja y = luvut-lista 
+    try:
+        kirjoittaminen(a,y,tiednimi)
+    except Exception:
+        print(f"Tiedoston '{tiednimi}' käsittelyssä virhe, lopetetaan.")
+        sys.exit(0)
+    return None
+
+def sisalto(rnumero):
+    luvut = input("Anna lukujen määrä, alaraja ja yläraja, esim. 7 1 37: ")
+    luvut = [int(x) for x in luvut.split( )]
+    if luvut[0] > luvut[1]+luvut[2]:
+        print("""Arvottavia lukuja ei voi olla enemmän kuin erilaisia lukuja on.\nKiitos ohjelman käytöstä.""")
+        sys.exit(0)
+    else:
+        i = 0
+        while i < luvut[0]:
+            rn = random.randint(luvut[1],luvut[2])
+            rnumero.append(rn)
+            i += 1
+        return rnumero, luvut
+
+def kirjoittaminen(a,y,tiednimi):
+    with open (tiednimi,"w",encoding="utf8") as tiedosto:
+        print(f"Tiedosto '{tiednimi}' luotu, kiitos ohjelman käytöstä.")
+        tiedosto.write(f"Arvottu {len(a)} lukua väliltä {y[1]}-{y[2]}:\n")
+        i = 0
+        while i < len(a):
+            tiedosto.write(f"{a[i]}\n")
+            i += 1
+    return None
+paaohjelma()
