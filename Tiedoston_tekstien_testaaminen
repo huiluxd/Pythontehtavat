@@ -1,0 +1,38 @@
+import sys
+def paaohjelma():
+    lista_tiedot = []
+    ltied = input("Anna luettavan tiedoston nimi: ")
+    try:
+        luetiedosto(ltied, lista_tiedot)
+    except Exception:
+        print(f"Tiedoston '{ltied}' käsittelyssä virhe, lopetetaan.")
+        sys.exit(0)
+    kirj = input("Anna kirjoitettavan tiedoston nimi: ")
+    try:
+        kirjoitus(kirj, lista_tiedot)
+    except Exception:
+        print(f"Tiedoston '{kirj}' käsittelyssä virhe, lopetetaan.")
+        sys.exit(0)
+    print("Kiitos ohjelman käytöstä.")
+def luetiedosto(ltied, lista_tiedot):
+    testauslista = []
+    with open(ltied,"r",encoding="utf-8") as tiedosto:
+        rivit = tiedosto.readlines()
+        print(f"Luettiin {len(rivit)} riviä tiedostosta '{ltied}'.")
+        for i in rivit:
+            i = i.strip()
+            if any(map(str.isdigit, i)) == True:
+                testauslista.append(i.lower())
+            else:
+                lista_tiedot.append(i.lower())
+        print(f"Hylättiin {len(testauslista)} riviä.")
+        return lista_tiedot
+def kirjoitus(kirj, lista_tiedot):
+    with open(kirj,"w") as tiedosto:
+        pituus = len(lista_tiedot)
+        i = 0
+        while i < pituus:
+            tiedosto.write(lista_tiedot[i]+"\n")
+            i += 1
+        print(f"Kirjoitettiin {len(lista_tiedot)} riviä tiedostoon '{kirj}'.")
+paaohjelma()
